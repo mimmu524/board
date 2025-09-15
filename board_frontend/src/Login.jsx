@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Login({ setIsLoggedIn }) {
+function Login({ setIsLoggedIn, setUsername }) {
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -12,9 +12,11 @@ function Login({ setIsLoggedIn }) {
 
       // 성공 시
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("username", res.data.username);
       setIsLoggedIn(true);
+      setUsername(res.data.username);
       alert("로그인 성공!");
-      window.location.href = "/posts";
+      navigate("/posts");
     } catch (err) {
       // 실패 시
       alert(err.response?.data?.error || "로그인 실패");

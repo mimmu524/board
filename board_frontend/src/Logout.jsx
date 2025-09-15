@@ -6,6 +6,7 @@ function Logout({ setIsLoggedIn }) {
 
   useEffect(() => {
     localStorage.removeItem("token"); // 토큰 삭제
+    localStorage.removeItem("username");
     setIsLoggedIn(false); // 상태 갱신
     navigate("/posts"); // 로그인 페이지로 이동
   }, [navigate, setIsLoggedIn]);

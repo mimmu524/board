@@ -94,7 +94,13 @@ const server = http.createServer(async (req, res) => {
         );
 
         res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ message: "로그인 성공", token }));
+        res.end(
+          JSON.stringify({
+            message: "로그인 성공",
+            token,
+            username: user.username,
+          })
+        );
       } catch (err) {
         console.error("로그인 오류:", err);
         res.writeHead(500, { "Content-Type": "application/json" });
